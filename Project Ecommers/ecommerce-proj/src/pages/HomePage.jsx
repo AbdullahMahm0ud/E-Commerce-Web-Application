@@ -3,6 +3,13 @@ import { products } from "../../Starting-Code/data/products";
 import "./HomePage.css";
 
 export function HomePage() {
+  fetch("http://localhost:3000/api/products")
+    .then((response) => {
+      return response.json();
+    }).then((data) => {
+      console.log(data);
+    });
+
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
@@ -14,10 +21,7 @@ export function HomePage() {
             return (
               <div key={product.id} className="product-container">
                 <div className="product-image-container">
-                  <img
-                    className="product-image"
-                    src={product.image}
-                  />
+                  <img className="product-image" src={product.image} />
                 </div>
 
                 <div className="product-name limit-text-to-2-lines">
