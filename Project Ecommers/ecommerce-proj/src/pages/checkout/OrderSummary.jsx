@@ -18,7 +18,7 @@ export function OrderSummary({ cart, deliveryOptions }) {
                 <CartItemDetails cartItem={cartItem} />
 
                 <DeliveryOptions
-                  cart={cart}
+                  cartItem={cartItem}
                   deliveryOptions={deliveryOptions}
                 />
               </div>

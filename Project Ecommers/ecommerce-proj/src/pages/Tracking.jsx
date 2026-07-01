@@ -43,6 +43,10 @@ export function Tracking({ cart }) {
     deliveryPercent = 100;
   }
 
+  const isPreparing = deliveryPercent < 33;
+  const isShipped = deliveryPercent >= 33 && deliveryPercent < 100;
+  const isDelivered = deliveryPercent === 100;
+
   return (
     <>
       <title>Tracking</title>
@@ -56,7 +60,7 @@ export function Tracking({ cart }) {
           </Link>
 
           <div className="delivery-date">
-            Arriving on{" "}
+            {isDelivered ? "Delivered on" : "Arriving on"}{" "}
             {dayjs(orderProduct.estimatedDeliveryTimeMs).format("dddd, MMMM D")}
           </div>
 
@@ -67,9 +71,19 @@ export function Tracking({ cart }) {
           <img className="product-image" src={orderProduct.product.image} />
 
           <div className="progress-labels-container">
-            <div className="progress-label">Preparing</div>
-            <div className="progress-label current-status">Shipped</div>
-            <div className="progress-label">Delivered</div>
+            <div
+              className={`progress-label ${isPreparing && "current-status"}`}
+            >
+              Preparing
+            </div>
+            <div className={`progress-label ${isShipped && "current-status"}`}>
+              Shipped
+            </div>
+            <div
+              className={`progress-label ${isDelivered && "current-status"}`}
+            >
+              Delivered
+            </div>
           </div>
 
           <div className="progress-bar-container">
