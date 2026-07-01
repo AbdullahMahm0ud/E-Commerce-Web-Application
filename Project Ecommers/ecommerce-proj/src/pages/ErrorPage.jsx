@@ -4,10 +4,9 @@ import { Header } from "../components/Header";
 export function ErrorPage({ cart }) {
   return (
     <div className="error-page">
-      <div className="grid-floor" />
-      <div className="noise-block" />
-      <div className="noise-block" style={{ animationDelay: '1.2s' }} />
-      <div className="noise-block" style={{ animationDelay: '3.7s' }} />
+      <div className="tear-bar" />
+      <div className="tear-bar" style={{ animationDelay: '1.4s' }} />
+      <div className="tear-bar" style={{ animationDelay: '2.8s' }} />
       
       <Header cart={cart} />
       <h1>Page Not Found</h1>
@@ -15,6 +14,7 @@ export function ErrorPage({ cart }) {
         404
         <span className="glitch-layer-1" />
         <span className="glitch-layer-2" />
+        <span className="glitch-layer-3" />
       </h2>
       <a href="/" className="home-link">
         Back to Home
