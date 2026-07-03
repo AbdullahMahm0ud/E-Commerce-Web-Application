@@ -1,6 +1,7 @@
 import { formatMoney } from "../../utils/money";
 
 export function PaymentSummary({ paymentSummary }) {
+  return(
   <div className="payment-summary">
     <div className="payment-summary-title">Payment Summary</div>
 
@@ -46,5 +47,6 @@ export function PaymentSummary({ paymentSummary }) {
         </button>
       </>
     )}
-  </div>;
+  </div>
+  );
 }
