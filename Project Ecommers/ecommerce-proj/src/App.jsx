@@ -10,6 +10,8 @@ import { ErrorPage } from "./pages/ErrorPage";
 
 import "./App.css";
 
+window.axios = axios
+
 function App() {
   const [cart, setCart] = useState([]);
 
@@ -21,8 +23,6 @@ function App() {
   useEffect(() => {
     loadCart();
   }, []);
-
-  window.axios = axios
 
   return (
     <Routes>
