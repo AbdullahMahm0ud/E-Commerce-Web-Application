@@ -38,21 +38,21 @@ describe("PaymentSummary Component", () => {
     ).toBeInTheDocument();
 
     expect(
-        within(screen.getByTestId("payment-summary-shipping")).getByText(
-            formatMoney(paymentSummary.shippingCostCents),
-        ),
-    ).toBeInTheDocument()
+      within(screen.getByTestId("payment-summary-shipping")).getByText(
+        formatMoney(paymentSummary.shippingCostCents),
+      ),
+    ).toBeInTheDocument();
 
     expect(screen.getByTestId("payment-summary-subtotal")).toHaveTextContent(
-        formatMoney(paymentSummary.totalCostBeforeTaxCents)
-    )
+      formatMoney(paymentSummary.totalCostBeforeTaxCents),
+    );
 
     expect(screen.getByTestId("payment-summary-tax")).toHaveTextContent(
-        formatMoney(paymentSummary.taxCents)
-    )
+      formatMoney(paymentSummary.taxCents),
+    );
 
     expect(screen.getByTestId("payment-summary-total")).toHaveTextContent(
-        formatMoney(paymentSummary.totalCostCents)
-    )
+      formatMoney(paymentSummary.totalCostCents),
+    );
   });
 });
