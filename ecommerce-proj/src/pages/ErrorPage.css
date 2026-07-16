@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap');
+
+/* ── Page layout ── */
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #020204;
+  color: #e8e8f0;
+  text-align: center;
+  padding: 2rem;
+  font-family: 'DM Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+  animation: body-shake 4s steps(1) infinite;
+}
+
+/* Deep blue radial glows */
+.error-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(0, 60, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 150, 255, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(0, 40, 200, 0.06) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Heavy CRT scanlines */
+.error-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 80, 255, 0.07) 1px,
+    rgba(0, 80, 255, 0.07) 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+  animation: scan-flicker 0.2s steps(2) infinite;
+}
+
+/* ── Big distorted 404 ── */
+.error-page h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 30vw, 22rem);
+  line-height: 1;
+  margin: 0;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(200, 220, 255, 0.25);
+  position: relative;
+  user-select: none;
+  z-index: 5;
+  animation: text-jolt 3.5s steps(1) infinite;
+}
+
+/* Base ghost layer — faint white */
+.error-page h2::before,
+.error-page h2::after,
+.error-page h2 .glitch-layer-1,
+.error-page h2 .glitch-layer-2,
+.error-page h2 .glitch-layer-3 {
+  content: '404';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Electric blue top slice */
+.error-page h2::before {
+  color: #0044ff;
+  -webkit-text-stroke: 0;
+  clip-path: polygon(0 0, 100% 10%, 100% 35%, 0 25%);
+  animation: glitch-blue-slice 2.1s steps(2, end) infinite;
+  opacity: 0;
+  text-shadow: -6px 0 12px rgba(0, 68, 255, 0.9), 0 0 30px rgba(0, 68, 255, 0.4);
+}
+
+/* Ice white mid slice */
+.error-page h2::after {
+  color: #ffffff;
+  -webkit-text-stroke: 0;
+  clip-path: polygon(0 40%, 100% 35%, 100% 60%, 0 65%);
+  animation: glitch-white-slice 1.7s steps(2, end) infinite;
+  opacity: 0;
+  text-shadow: 6px 0 12px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Deep navy bottom slice */
+.error-page h2 .glitch-layer-1 {
+  color: #001a66;
+  clip-path: polygon(0 70%, 100% 65%, 100% 90%, 0 95%);
+  animation: glitch-navy-slice 2.6s steps(2, end) infinite;
+  opacity: 0;
+  text-shadow: 0 0 15px rgba(0, 26, 102, 0.8);
+}
+
+/* Bright cyan accent slice */
+.error-page h2 .glitch-layer-2 {
+  color: #00aaff;
+  clip-path: polygon(0 20%, 100% 15%, 100% 30%, 0 35%);
+  animation: glitch-cyan-slice 1.3s steps(2, end) infinite;
+  opacity: 0;
+  text-shadow: -3px 0 10px rgba(0, 170, 255, 0.8);
+}
+
+/* Harsh inversion slice */
+.error-page h2 .glitch-layer-3 {
+  color: #000000;
+  background: rgba(0, 100, 255, 0.3);
+  clip-path: polygon(0 50%, 100% 45%, 100% 55%, 0 60%);
+  animation: glitch-invert-slice 0.9s steps(2, end) infinite;
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+/* ── "Page Not Found" text ── */
+.error-page h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(200, 210, 230, 0.4);
+  margin: 0 0 1rem 0;
+  order: -1;
+  z-index: 5;
+  position: relative;
+  animation: subtitle-death 5s steps(1) infinite;
+}
+
+/* ── Go home link ── */
+.error-page a.home-link {
+  display: inline-block;
+  margin-top: 2.5rem;
+  padding: 0.65rem 2.5rem;
+  border: 1px solid rgba(0, 100, 255, 0.25);
+  color: #aaccff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: none;
+  position: relative;
+  z-index: 5;
+  background: rgba(0, 40, 120, 0.08);
+  animation: link-flicker 4s steps(1) infinite;
+}
+
+.error-page a.home-link:hover {
+  background: rgba(0, 80, 255, 0.15);
+  border-color: rgba(0, 150, 255, 0.6);
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 150, 255, 0.8);
+  box-shadow: 0 0 30px rgba(0, 100, 255, 0.2), inset 0 0 20px rgba(0, 100, 255, 0.1);
+}
+
+/* ── Random horizontal tearing bars ── */
+.error-page .tear-bar {
+  position: absolute;
+  left: 0;
+  height: 3px;
+  background: rgba(0, 120, 255, 0.15);
+  z-index: 12;
+  pointer-events: none;
+  animation: tear-snap 3s steps(1) infinite;
+}
+
+/* ── Keyframes ── */
+
+/* Whole-page micro-shake */
+@keyframes body-shake {
+  0%, 100% { transform: translate(0, 0); }
+  92% { transform: translate(0, 0); }
+  93% { transform: translate(-2px, 1px); }
+  94% { transform: translate(2px, -1px); }
+  95% { transform: translate(-1px, 2px); }
+  96% { transform: translate(0, 0); }
+  97% { transform: translate(1px, -2px); }
+  98% { transform: translate(0, 0); }
+}
+
+/* Main text violent jolt */
+@keyframes text-jolt {
+  0%, 100% { transform: skew(0deg) translate(0, 0); filter: none; }
+  85% { transform: skew(0deg) translate(0, 0); }
+  86% { transform: skew(8deg) translate(-4px, 2px); filter: blur(1px); }
+  87% { transform: skew(-12deg) translate(6px, -3px); filter: blur(0); }
+  88% { transform: skew(4deg) translate(-2px, 1px); }
+  89% { transform: skew(0deg) translate(0, 0); }
+  90% { transform: skew(-6deg) translate(3px, -1px); }
+  91% { transform: skew(0deg) translate(0, 0); }
+  94% { transform: skew(10deg) translate(-5px, 0); filter: blur(2px); }
+  95% { transform: skew(0deg) translate(0, 0); filter: none; }
+}
+
+/* Blue slice — harsh snaps */
+@keyframes glitch-blue-slice {
+  0%, 100% { transform: translateX(-50%) translate(0, 0); opacity: 0; }
+  10% { transform: translateX(-50%) translate(-15px, 4px); opacity: 1; }
+  20% { transform: translateX(-50%) translate(20px, -6px); opacity: 0; }
+  30% { transform: translateX(-50%) translate(-8px, 2px); opacity: 1; }
+  40% { transform: translateX(-50%) translate(12px, -3px); opacity: 0; }
+  50% { transform: translateX(-50%) translate(-20px, 5px); opacity: 1; }
+  60% { transform: translateX(-50%) translate(6px, -2px); opacity: 0; }
+  70% { transform: translateX(-50%) translate(-12px, 3px); opacity: 1; }
+  80% { transform: translateX(-50%) translate(0, 0); opacity: 0; }
+}
+
+/* White slice */
+@keyframes glitch-white-slice {
+  0%, 100% { transform: translateX(-50%) translate(0, 0); opacity: 0; }
+  15% { transform: translateX(-50%) translate(18px, -5px); opacity: 1; }
+  25% { transform: translateX(-50%) translate(-14px, 3px); opacity: 0; }
+  35% { transform: translateX(-50%) translate(22px, -2px); opacity: 1; }
+  45% { transform: translateX(-50%) translate(-6px, 6px); opacity: 0; }
+  55% { transform: translateX(-50%) translate(10px, -4px); opacity: 1; }
+  65% { transform: translateX(-50%) translate(-18px, 1px); opacity: 0; }
+  75% { transform: translateX(-50%) translate(4px, -6px); opacity: 1; }
+  85% { transform: translateX(-50%) translate(0, 0); opacity: 0; }
+}
+
+/* Navy slice */
+@keyframes glitch-navy-slice {
+  0%, 100% { transform: translateX(-50%) translate(0, 0); opacity: 0; }
+  12% { transform: translateX(-50%) translate(-10px, 3px); opacity: 0.9; }
+  24% { transform: translateX(-50%) translate(14px, -4px); opacity: 0; }
+  36% { transform: translateX(-50%) translate(-6px, 5px); opacity: 0.9; }
+  48% { transform: translateX(-50%) translate(18px, -2px); opacity: 0; }
+  60% { transform: translateX(-50%) translate(-14px, 4px); opacity: 0.9; }
+  72% { transform: translateX(-50%) translate(8px, -5px); opacity: 0; }
+  84% { transform: translateX(-50%) translate(-4px, 2px); opacity: 0.9; }
+}
+
+/* Cyan slice */
+@keyframes glitch-cyan-slice {
+  0%, 100% { transform: translateX(-50%) translate(0, 0); opacity: 0; }
+  20% { transform: translateX(-50%) translate(12px, -3px); opacity: 0.8; }
+  40% { transform: translateX(-50%) translate(-16px, 4px); opacity: 0; }
+  60% { transform: translateX(-50%) translate(6px, -5px); opacity: 0.8; }
+  80% { transform: translateX(-50%) translate(-8px, 2px); opacity: 0; }
+}
+
+/* Inversion slice */
+@keyframes glitch-invert-slice {
+  0%, 100% { transform: translateX(-50%) translate(0, 0); opacity: 0; }
+  30% { transform: translateX(-50%) translate(-20px, 0); opacity: 0.6; }
+  50% { transform: translateX(-50%) translate(15px, 0); opacity: 0; }
+  70% { transform: translateX(-50%) translate(-5px, 0); opacity: 0.6; }
+}
+
+/* Subtitle stuttering death */
+@keyframes subtitle-death {
+  0%, 100% { opacity: 1; transform: translateX(0); letter-spacing: 0.4em; }
+  88% { opacity: 1; transform: translateX(0); }
+  89% { opacity: 0.1; transform: translateX(-3px); letter-spacing: 0.5em; }
+  90% { opacity: 1; transform: translateX(2px); letter-spacing: 0.3em; }
+  91% { opacity: 0.3; transform: translateX(-1px); }
+  92% { opacity: 1; transform: translateX(0); letter-spacing: 0.4em; }
+  95% { opacity: 0; transform: translateX(4px); }
+  96% { opacity: 1; transform: translateX(0); }
+  97% { opacity: 0.2; transform: translateX(-2px); }
+  98% { opacity: 1; transform: translateX(0); }
+}
+
+/* Scanline hard flicker */
+@keyframes scan-flicker {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Link intermittent failure */
+@keyframes link-flicker {
+  0%, 100% { opacity: 1; border-color: rgba(0, 100, 255, 0.25); }
+  90% { opacity: 1; }
+  91% { opacity: 0.2; border-color: rgba(255, 255, 255, 0.1); }
+  92% { opacity: 1; }
+  94% { opacity: 0.1; }
+  95% { opacity: 1; }
+  97% { opacity: 0.3; border-color: rgba(0, 200, 255, 0.5); }
+  98% { opacity: 1; }
+}
+
+/* Tearing bars snapping across screen */
+@keyframes tear-snap {
+  0%, 100% { width: 0; opacity: 0; top: 50%; }
+  15% { width: 0; opacity: 0; top: 20%; }
+  16% { width: 40%; opacity: 0.4; top: 20%; left: 10%; }
+  17% { width: 0; opacity: 0; }
+  45% { width: 0; opacity: 0; top: 60%; }
+  46% { width: 60%; opacity: 0.3; top: 60%; left: 30%; }
+  47% { width: 0; opacity: 0; }
+  70% { width: 0; opacity: 0; top: 40%; }
+  71% { width: 25%; opacity: 0.5; top: 40%; left: 60%; }
+  72% { width: 0; opacity: 0; }
+  85% { width: 0; opacity: 0; top: 80%; }
+  86% { width: 80%; opacity: 0.2; top: 80%; left: 5%; }
+  87% { width: 0; opacity: 0; }
+}
